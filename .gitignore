@@ -11,3 +11,9 @@ __pycache__/
 
 # Ignore logs
 *.log
+
+# Certificações
+*.key
+*.csr
+*.crt
+*.pem

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -6,24 +6,9 @@ app = Flask(__name__)
 def home():
     return "API de agendamento de salas"
 
-@app.post('/salas')
-def cadastrar_salas():
-    dados= request.json
-    nome_sala = dados.get('nome')
-    capacidade = dados.get('capacidade')
-
-    if not nome_sala or not capacidade:
-        return jsonify({"erro": "Nome da sala e capacidade são obrigatórios!"}), 400
-    
-    # Simulação de inserção em banco
-    return jsonify({
-        "mensagem": "Sala cadastrada com sucesso!",
-        "sala": {
-            "nome": nome_sala,
-            "capacidade": capacidade
-        }
-    }), 201
-
+@app.route('/salas')
+def todas_salas():
+    return render_template('salas.html', titulo='Todas as salas')
 
 
 if __name__ == '__main__':
